@@ -1173,6 +1173,1158 @@
     };
 
     // ============================================
+    // FINANCIAL SERVICES VARIANTS
+    // ============================================
+
+    // KYC Refresh (ID Verification variant)
+    const KYCRefreshApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.shield}
+            title="KYC Verification"
+            subtitle="Annual compliance refresh"
+            theme={theme}
+          />
+          <div style={{
+            background: t.accentLight,
+            borderRadius: 16,
+            padding: 24,
+            marginBottom: 16,
+            position: 'relative',
+          }}>
+            <div style={{ position: 'absolute', top: 16, left: 16, width: 40, height: 40, borderTop: `3px solid ${t.accent}`, borderLeft: `3px solid ${t.accent}`, borderRadius: '4px 0 0 0' }} />
+            <div style={{ position: 'absolute', top: 16, right: 16, width: 40, height: 40, borderTop: `3px solid ${t.accent}`, borderRight: `3px solid ${t.accent}`, borderRadius: '0 4px 0 0' }} />
+            <div style={{ position: 'absolute', bottom: 16, left: 16, width: 40, height: 40, borderBottom: `3px solid ${t.accent}`, borderLeft: `3px solid ${t.accent}`, borderRadius: '0 0 0 4px' }} />
+            <div style={{ position: 'absolute', bottom: 16, right: 16, width: 40, height: 40, borderBottom: `3px solid ${t.accent}`, borderRight: `3px solid ${t.accent}`, borderRadius: '0 0 4px 0' }} />
+            <div style={{ background: colors.white, borderRadius: 8, height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${colors.gray200}` }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ color: colors.gray500, fontSize: 13, fontWeight: 500, marginBottom: 4 }}>Scan government ID</div>
+                <div style={{ color: colors.gray400, fontSize: 12 }}>Passport or Driver's License</div>
+              </div>
+            </div>
+          </div>
+          <CTAButton theme={theme}>📷 Verify Identity</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Collections Payment (Payment variant)
+    const CollectionsPaymentApp = ({ theme = 'purple' }) => (
+      <MicroAppCard>
+        <MicroAppHeader
+          icon={Icons.card}
+          title="Resolve Balance"
+          subtitle="Secure payment"
+          theme={theme}
+        />
+        <ValueCard
+          label="Past Due Amount"
+          value="$342.18"
+          subtitle="Account #****4521"
+          theme={theme}
+        />
+        <InfoRow icon="VISA" label="••••" value="4582" theme={theme} />
+        <CTAButton theme={theme}>Pay $342.18</CTAButton>
+      </MicroAppCard>
+    );
+
+    // ============================================
+    // INSURANCE VARIANTS
+    // ============================================
+
+    // FNOL - First Notice of Loss (Dispute/Claim variant)
+    const FNOLApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const incidents = [
+        { icon: '🚗', label: 'Auto accident' },
+        { icon: '🏠', label: 'Property damage' },
+        { icon: '🌊', label: 'Water/flood' },
+        { icon: '🔥', label: 'Fire/smoke' },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.alert}
+            title="Report a Claim"
+            subtitle="First Notice of Loss"
+            theme={theme}
+          />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
+            {incidents.map((item, i) => (
+              <button key={i} style={{
+                background: i === 0 ? t.accentLight : colors.gray50,
+                border: i === 0 ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                borderRadius: 12, padding: '16px 12px', textAlign: 'center', cursor: 'pointer',
+              }}>
+                <div style={{ fontSize: 24, marginBottom: 6 }}>{item.icon}</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: i === 0 ? t.accent : colors.gray700 }}>{item.label}</div>
+              </button>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Premium Payment (Payment variant)
+    const PremiumPaymentApp = ({ theme = 'purple' }) => (
+      <MicroAppCard>
+        <MicroAppHeader
+          icon={Icons.card}
+          title="Pay Premium"
+          subtitle="Policy #POL-28491"
+          theme={theme}
+        />
+        <ValueCard
+          label="Premium Due"
+          value="$186.00"
+          subtitle="Monthly • Due Dec 15"
+          theme={theme}
+        />
+        <InfoRow icon="VISA" label="••••" value="4582" theme={theme} />
+        <CTAButton theme={theme}>Pay Premium</CTAButton>
+      </MicroAppCard>
+    );
+
+    // Policy Application (Form Intake variant)
+    const PolicyApplicationApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.form}
+            title="Policy Application"
+            subtitle="Step 3 of 5"
+            theme={theme}
+          />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 24, padding: '16px 0' }}>
+            {[1, 2, 3, 4, 5].map((step, i) => (
+              <React.Fragment key={step}>
+                <div style={{
+                  width: 32, height: 32, borderRadius: '50%',
+                  background: step <= 3 ? t.accent : colors.gray200,
+                  color: step <= 3 ? colors.white : colors.gray400,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 13, fontWeight: 700,
+                }}>{step < 3 ? '✓' : step}</div>
+                {i < 4 && <div style={{ width: 24, height: 3, background: step < 3 ? t.accent : colors.gray200, borderRadius: 2 }} />}
+              </React.Fragment>
+            ))}
+          </div>
+          <SectionLabel theme={theme}>Coverage Details</SectionLabel>
+          <SelectField label="Coverage Type" value="Comprehensive" theme={theme} />
+          <InputField label="Deductible Amount" placeholder="$500" theme={theme} />
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Insurance Consent (Signature variant)
+    const InsuranceConsentApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.pen}
+            title="Policy Consent"
+            subtitle="E-signature required"
+            theme={theme}
+          />
+          <div style={{ background: colors.gray50, borderRadius: 12, padding: 16, marginBottom: 16, maxHeight: 80, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ fontSize: 12, color: colors.gray600, lineHeight: 1.6 }}>
+              I acknowledge receipt of the policy documents and agree to the terms, conditions, and exclusions outlined...
+            </div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 32, background: 'linear-gradient(transparent, #F9FAFB)' }} />
+          </div>
+          <div style={{ background: colors.white, border: `2px solid ${colors.gray200}`, borderRadius: 12, padding: 20, marginBottom: 16, minHeight: 100, position: 'relative' }}>
+            <div style={{ position: 'absolute', bottom: 32, left: 20, right: 20, borderBottom: `2px solid ${colors.gray300}` }} />
+            <div style={{ position: 'absolute', bottom: 28, left: 20, fontSize: 18, color: colors.gray400, fontWeight: 300 }}>✕</div>
+            <svg width="120" height="40" viewBox="0 0 120 40" style={{ position: 'absolute', bottom: 36, left: 40 }}>
+              <path d="M5 30 Q 15 5, 30 25 T 55 20 T 80 25 T 105 15" stroke={t.accent} strokeWidth="2" fill="none" opacity="0.6"/>
+            </svg>
+            <div style={{ position: 'absolute', bottom: 8, right: 16, fontSize: 10, color: colors.gray400 }}>Sign above</div>
+          </div>
+          <CTAButton theme={theme}>Accept & Sign</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
+    // HEALTHCARE VARIANTS
+    // ============================================
+
+    // Patient Intake (Form Intake variant)
+    const PatientIntakeApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.form}
+            title="Patient Intake"
+            subtitle="Step 1 of 3"
+            theme={theme}
+          />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 24, padding: '16px 0' }}>
+            {[1, 2, 3].map((step, i) => (
+              <React.Fragment key={step}>
+                <div style={{
+                  width: 32, height: 32, borderRadius: '50%',
+                  background: step <= 1 ? t.accent : colors.gray200,
+                  color: step <= 1 ? colors.white : colors.gray400,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 13, fontWeight: 700,
+                }}>{step}</div>
+                {i < 2 && <div style={{ width: 32, height: 3, background: colors.gray200, borderRadius: 2 }} />}
+              </React.Fragment>
+            ))}
+          </div>
+          <SectionLabel theme={theme}>Patient Information</SectionLabel>
+          <InputField label="Full Name" placeholder="Enter your name" theme={theme} />
+          <InputField label="Date of Birth" placeholder="MM / DD / YYYY" theme={theme} />
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Co-Pay Payment (Payment variant)
+    const CoPayApp = ({ theme = 'purple' }) => (
+      <MicroAppCard>
+        <MicroAppHeader
+          icon={Icons.card}
+          title="Pay Co-Pay"
+          subtitle="Secure checkout"
+          theme={theme}
+        />
+        <ValueCard
+          label="Co-Pay Amount"
+          value="$35.00"
+          subtitle="Visit: Dec 5, 2024"
+          theme={theme}
+        />
+        <InfoRow icon="VISA" label="••••" value="4582" theme={theme} />
+        <CTAButton theme={theme}>Pay $35.00</CTAButton>
+      </MicroAppCard>
+    );
+
+    // Insurance Card Upload (Photo Capture variant)
+    const InsuranceCardApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.camera}
+            title="Insurance Card"
+            subtitle="Upload front & back"
+            theme={theme}
+          />
+          <div style={{
+            border: `2px dashed ${t.accent}`, borderRadius: 16, padding: 32,
+            textAlign: 'center', background: t.accentLight, marginBottom: 16,
+          }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: '50%', background: colors.white,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 16px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            }}>
+              <span style={{ fontSize: 24 }}>💳</span>
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: colors.gray800, marginBottom: 4 }}>
+              Upload insurance card
+            </div>
+            <div style={{ fontSize: 12, color: colors.gray500 }}>Front side first</div>
+          </div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <SecondaryButton theme={theme}>📷 Camera</SecondaryButton>
+            <CTAButton theme={theme}>📁 Browse</CTAButton>
+          </div>
+        </MicroAppCard>
+      );
+    };
+
+    // Treatment Consent (Signature variant)
+    const TreatmentConsentApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.pen}
+            title="Treatment Consent"
+            subtitle="Authorization required"
+            theme={theme}
+          />
+          <div style={{ background: colors.gray50, borderRadius: 12, padding: 16, marginBottom: 16, maxHeight: 80, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ fontSize: 12, color: colors.gray600, lineHeight: 1.6 }}>
+              I consent to the proposed treatment plan and authorize the healthcare provider to perform the necessary procedures...
+            </div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 32, background: 'linear-gradient(transparent, #F9FAFB)' }} />
+          </div>
+          <div style={{ background: colors.white, border: `2px solid ${colors.gray200}`, borderRadius: 12, padding: 20, marginBottom: 16, minHeight: 100, position: 'relative' }}>
+            <div style={{ position: 'absolute', bottom: 32, left: 20, right: 20, borderBottom: `2px solid ${colors.gray300}` }} />
+            <div style={{ position: 'absolute', bottom: 28, left: 20, fontSize: 18, color: colors.gray400, fontWeight: 300 }}>✕</div>
+            <svg width="120" height="40" viewBox="0 0 120 40" style={{ position: 'absolute', bottom: 36, left: 40 }}>
+              <path d="M5 30 Q 15 5, 30 25 T 55 20 T 80 25 T 105 15" stroke={t.accent} strokeWidth="2" fill="none" opacity="0.6"/>
+            </svg>
+            <div style={{ position: 'absolute', bottom: 8, right: 16, fontSize: 10, color: colors.gray400 }}>Patient signature</div>
+          </div>
+          <CTAButton theme={theme}>I Consent</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
+    // TELECOM VARIANTS
+    // ============================================
+
+    // Device Upgrade (Service Selection variant)
+    const DeviceUpgradeApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const devices = [
+        { label: 'iPhone 15 Pro', desc: '$41.67/mo for 24 mo', selected: true },
+        { label: 'Galaxy S24 Ultra', desc: '$37.50/mo for 24 mo', selected: false },
+        { label: 'Pixel 8 Pro', desc: '$29.17/mo for 24 mo', selected: false },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.toggle}
+            title="Upgrade Device"
+            subtitle="You're eligible!"
+            theme={theme}
+          />
+          <div style={{ marginBottom: 20 }}>
+            {devices.map((dev, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 14, padding: 16,
+                background: dev.selected ? t.accentLight : colors.white,
+                border: dev.selected ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                borderRadius: 12, marginBottom: 10, cursor: 'pointer',
+              }}>
+                <div style={{
+                  width: 24, height: 24, borderRadius: '50%',
+                  background: dev.selected ? t.accent : colors.white,
+                  border: dev.selected ? 'none' : `2px solid ${colors.gray300}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: colors.white, fontSize: 14,
+                }}>{dev.selected && '✓'}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: colors.gray900 }}>{dev.label}</div>
+                  <div style={{ fontSize: 12, color: colors.gray500, marginTop: 2 }}>{dev.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Auto-Pay Enrollment (Program Enrollment variant)
+    const AutoPayApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.gift}
+            title="Auto-Pay Setup"
+            subtitle="Save $10/month"
+            theme={theme}
+          />
+          <div style={{
+            background: `linear-gradient(135deg, ${t.accent} 0%, ${t.accent}dd 100%)`,
+            borderRadius: 16, padding: 20, marginBottom: 16, color: colors.white,
+          }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 4 }}>MONTHLY SAVINGS</div>
+            <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 16 }}>$10/mo</div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>when you enroll in Auto-Pay</div>
+          </div>
+          <div style={{ marginBottom: 20 }}>
+            {['Automatic monthly payments', 'Never miss a due date', 'Cancel anytime'].map((benefit, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderBottom: i < 2 ? `1px solid ${colors.gray100}` : 'none' }}>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: t.accentLight, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>✓</div>
+                <span style={{ fontSize: 14, color: colors.gray700 }}>{benefit}</span>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Enroll in Auto-Pay</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Account Update (ID + Form variant)
+    const AccountUpdateApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const updates = [
+        { icon: '📍', label: 'Change address', selected: true },
+        { icon: '👤', label: 'Update name', selected: false },
+        { icon: '➕', label: 'Add authorized user', selected: false },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.user}
+            title="Update Account"
+            subtitle="What would you like to change?"
+            theme={theme}
+          />
+          <div style={{ marginBottom: 20 }}>
+            {updates.map((item, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 14, padding: 16,
+                background: item.selected ? t.accentLight : colors.white,
+                border: item.selected ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                borderRadius: 12, marginBottom: 10, cursor: 'pointer',
+              }}>
+                <div style={{ fontSize: 20 }}>{item.icon}</div>
+                <div style={{ flex: 1, fontSize: 14, fontWeight: 600, color: colors.gray900 }}>{item.label}</div>
+                <div style={{
+                  width: 22, height: 22, borderRadius: '50%',
+                  background: item.selected ? t.accent : colors.white,
+                  border: item.selected ? 'none' : `2px solid ${colors.gray300}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: colors.white, fontSize: 12,
+                }}>{item.selected && '✓'}</div>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // New Line Activation (Service + Consent)
+    const NewLineApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.toggle}
+            title="Activate New Line"
+            subtitle="Add to your plan"
+            theme={theme}
+          />
+          <SectionLabel theme={theme}>Line Details</SectionLabel>
+          <InputField label="Phone Number" placeholder="(555) 123-4567" theme={theme} />
+          <SelectField label="Plan Type" value="Unlimited Premium" theme={theme} />
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: 12, background: colors.gray50, borderRadius: 10, marginBottom: 16 }}>
+            <input type="checkbox" defaultChecked style={{ marginTop: 2, accentColor: t.accent }} />
+            <span style={{ fontSize: 12, color: colors.gray600, lineHeight: 1.5 }}>
+              I agree to the Terms of Service and authorize credit verification
+            </span>
+          </div>
+          <CTAButton theme={theme}>Activate Line</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
+    // UTILITIES VARIANTS
+    // ============================================
+
+    // Service Transfer (Service Selection variant)
+    const ServiceTransferApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const options = [
+        { label: 'Start new service', desc: 'At a new address', selected: false },
+        { label: 'Stop service', desc: 'Cancel current plan', selected: false },
+        { label: 'Transfer service', desc: 'Moving to new home', selected: true },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.toggle}
+            title="Service Request"
+            subtitle="Manage your utility service"
+            theme={theme}
+          />
+          <div style={{ marginBottom: 20 }}>
+            {options.map((opt, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 14, padding: 16,
+                background: opt.selected ? t.accentLight : colors.white,
+                border: opt.selected ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                borderRadius: 12, marginBottom: 10, cursor: 'pointer',
+              }}>
+                <div style={{
+                  width: 24, height: 24, borderRadius: '50%',
+                  background: opt.selected ? t.accent : colors.white,
+                  border: opt.selected ? 'none' : `2px solid ${colors.gray300}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: colors.white, fontSize: 14,
+                }}>{opt.selected && '✓'}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: colors.gray900 }}>{opt.label}</div>
+                  <div style={{ fontSize: 12, color: colors.gray500, marginTop: 2 }}>{opt.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Meter Reading (Photo Capture variant)
+    const MeterReadingApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.camera}
+            title="Meter Reading"
+            subtitle="Submit your reading"
+            theme={theme}
+          />
+          <div style={{
+            border: `2px dashed ${t.accent}`, borderRadius: 16, padding: 32,
+            textAlign: 'center', background: t.accentLight, marginBottom: 16,
+          }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: '50%', background: colors.white,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 16px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            }}>
+              <span style={{ fontSize: 24 }}>📊</span>
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: colors.gray800, marginBottom: 4 }}>
+              Photo your meter
+            </div>
+            <div style={{ fontSize: 12, color: colors.gray500 }}>Make sure numbers are visible</div>
+          </div>
+          <InputField label="Or enter reading manually" placeholder="00000.00" theme={theme} />
+          <CTAButton theme={theme}>Submit Reading</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Budget Billing (Program Enrollment variant)
+    const BudgetBillingApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.gift}
+            title="Budget Billing"
+            subtitle="Predictable monthly bills"
+            theme={theme}
+          />
+          <div style={{
+            background: `linear-gradient(135deg, ${t.accent} 0%, ${t.accent}dd 100%)`,
+            borderRadius: 16, padding: 20, marginBottom: 16, color: colors.white,
+          }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 4 }}>ESTIMATED MONTHLY</div>
+            <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 16 }}>$142/mo</div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>Based on 12-month average</div>
+          </div>
+          <div style={{ marginBottom: 20 }}>
+            {['Same amount every month', 'No surprise bills', 'Annual true-up adjustment'].map((benefit, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderBottom: i < 2 ? `1px solid ${colors.gray100}` : 'none' }}>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: t.accentLight, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>✓</div>
+                <span style={{ fontSize: 14, color: colors.gray700 }}>{benefit}</span>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Enroll Now</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Utility Bill Payment (Payment variant)
+    const UtilityPaymentApp = ({ theme = 'purple' }) => (
+      <MicroAppCard>
+        <MicroAppHeader
+          icon={Icons.card}
+          title="Pay Utility Bill"
+          subtitle="Account #****7832"
+          theme={theme}
+        />
+        <ValueCard
+          label="Current Balance"
+          value="$156.43"
+          subtitle="Due Dec 20"
+          theme={theme}
+        />
+        <InfoRow icon="VISA" label="••••" value="4582" theme={theme} />
+        <CTAButton theme={theme}>Pay $156.43</CTAButton>
+      </MicroAppCard>
+    );
+
+    // ============================================
+    // TRAVEL VARIANTS
+    // ============================================
+
+    // Booking Modification (Service Selection variant)
+    const BookingModApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const options = [
+        { icon: '📅', label: 'Change dates', selected: true },
+        { icon: '✈️', label: 'Change flight', selected: false },
+        { icon: '❌', label: 'Cancel booking', selected: false },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.plane}
+            title="Modify Booking"
+            subtitle="Confirmation #ABC123"
+            theme={theme}
+          />
+          <div style={{ marginBottom: 20 }}>
+            {options.map((opt, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 14, padding: 16,
+                background: opt.selected ? t.accentLight : colors.white,
+                border: opt.selected ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                borderRadius: 12, marginBottom: 10, cursor: 'pointer',
+              }}>
+                <div style={{ fontSize: 20 }}>{opt.icon}</div>
+                <div style={{ flex: 1, fontSize: 14, fontWeight: 600, color: colors.gray900 }}>{opt.label}</div>
+                <div style={{
+                  width: 22, height: 22, borderRadius: '50%',
+                  background: opt.selected ? t.accent : colors.white,
+                  border: opt.selected ? 'none' : `2px solid ${colors.gray300}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: colors.white, fontSize: 12,
+                }}>{opt.selected && '✓'}</div>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Travel Payment (Payment variant with trip info)
+    const TravelPaymentApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.plane}
+            title="Complete Payment"
+            subtitle="Secure checkout"
+            theme={theme}
+          />
+          <div style={{ background: colors.gray50, borderRadius: 12, padding: 16, marginBottom: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <div style={{ fontSize: 11, color: colors.gray500 }}>ROUNDTRIP</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: colors.gray900 }}>LAX → MIA</div>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 11, color: colors.gray500 }}>DATES</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: colors.gray800 }}>Dec 20 - 27</div>
+              </div>
+            </div>
+          </div>
+          <ValueCard label="Total Due" value="$623.00" subtitle="2 passengers" theme={theme} />
+          <InfoRow icon="VISA" label="••••" value="4582" theme={theme} />
+          <CTAButton theme={theme}>Pay & Confirm</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Loyalty Redemption (Travel)
+    const LoyaltyRedemptionApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.gift}
+            title="Redeem Miles"
+            subtitle="Use your rewards"
+            theme={theme}
+          />
+          <div style={{
+            background: `linear-gradient(135deg, ${t.accent} 0%, ${t.accent}dd 100%)`,
+            borderRadius: 16, padding: 20, marginBottom: 16, color: colors.white,
+          }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 4 }}>AVAILABLE MILES</div>
+            <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 8 }}>47,500</div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>Gold Member • Expires Dec 2025</div>
+          </div>
+          <SectionLabel theme={theme}>Redemption Options</SectionLabel>
+          <div style={{ marginBottom: 16 }}>
+            {[
+              { miles: '25,000', value: 'One-way domestic flight' },
+              { miles: '45,000', value: 'Round-trip domestic' },
+            ].map((opt, i) => (
+              <div key={i} style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '12px 0', borderBottom: i === 0 ? `1px solid ${colors.gray100}` : 'none',
+              }}>
+                <span style={{ fontSize: 14, color: colors.gray700 }}>{opt.value}</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: t.accent }}>{opt.miles}</span>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Redeem Now</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Check-In (Travel)
+    const CheckInApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.plane}
+            title="Check In"
+            subtitle="Flight UA 1234"
+            theme={theme}
+          />
+          <div style={{ background: colors.gray50, borderRadius: 12, padding: 16, marginBottom: 16 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+              <div>
+                <div style={{ fontSize: 24, fontWeight: 800, color: colors.gray900 }}>SFO</div>
+                <div style={{ fontSize: 11, color: colors.gray500 }}>San Francisco</div>
+              </div>
+              <div style={{ color: t.accent, fontSize: 20 }}>→</div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 24, fontWeight: 800, color: colors.gray900 }}>LAX</div>
+                <div style={{ fontSize: 11, color: colors.gray500 }}>Los Angeles</div>
+              </div>
+            </div>
+            <div style={{ borderTop: `1px solid ${colors.gray200}`, paddingTop: 12 }}>
+              <div style={{ fontSize: 12, color: colors.gray500 }}>DEPARTURE</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: colors.gray800 }}>Today, 3:45 PM • Gate B12</div>
+            </div>
+          </div>
+          <InputField label="Seat Preference" placeholder="Window selected" theme={theme} />
+          <CTAButton theme={theme}>Complete Check-In</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
+    // RETAIL / E-COMMERCE VARIANTS
+    // ============================================
+
+    // Order Return (Dispute variant)
+    const OrderReturnApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const reasons = [
+        { icon: '📦', label: 'Wrong item received' },
+        { icon: '💔', label: 'Item damaged' },
+        { icon: '🔄', label: 'Changed my mind' },
+        { icon: '📏', label: 'Size/fit issue' },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.receipt}
+            title="Return Item"
+            subtitle="Order #ORD-78432"
+            theme={theme}
+          />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
+            {reasons.map((item, i) => (
+              <button key={i} style={{
+                background: i === 1 ? t.accentLight : colors.gray50,
+                border: i === 1 ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                borderRadius: 12, padding: '16px 12px', textAlign: 'center', cursor: 'pointer',
+              }}>
+                <div style={{ fontSize: 24, marginBottom: 6 }}>{item.icon}</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: i === 1 ? t.accent : colors.gray700 }}>{item.label}</div>
+              </button>
+            ))}
+          </div>
+          <CTAButton theme={theme}>Start Return</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Order Tracking
+    const OrderTrackingApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      const steps = [
+        { label: 'Order placed', date: 'Dec 1', done: true },
+        { label: 'Shipped', date: 'Dec 3', done: true },
+        { label: 'Out for delivery', date: 'Dec 5', done: true },
+        { label: 'Delivered', date: 'Today', done: false },
+      ];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.receipt}
+            title="Track Order"
+            subtitle="Order #ORD-78432"
+            theme={theme}
+          />
+          <div style={{ marginBottom: 20 }}>
+            {steps.map((step, i) => (
+              <div key={i} style={{ display: 'flex', gap: 14, marginBottom: i < steps.length - 1 ? 0 : 0 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 20 }}>
+                  <div style={{
+                    width: 14, height: 14, borderRadius: '50%',
+                    background: step.done ? t.accent : colors.white,
+                    border: step.done ? 'none' : `2px solid ${colors.gray300}`,
+                  }} />
+                  {i < steps.length - 1 && (
+                    <div style={{ width: 2, height: 32, background: step.done ? t.accent : colors.gray200 }} />
+                  )}
+                </div>
+                <div style={{ flex: 1, paddingBottom: 16 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: step.done ? colors.gray900 : colors.gray400 }}>{step.label}</div>
+                  <div style={{ fontSize: 12, color: colors.gray500, marginTop: 2 }}>{step.date}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <SecondaryButton theme={theme}>View Details</SecondaryButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Loyalty Enrollment (Retail)
+    const RetailLoyaltyApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.gift}
+            title="Join Rewards"
+            subtitle="Start earning today"
+            theme={theme}
+          />
+          <div style={{
+            background: `linear-gradient(135deg, ${t.accent} 0%, ${t.accent}dd 100%)`,
+            borderRadius: 16, padding: 20, marginBottom: 16, color: colors.white,
+          }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 4 }}>WELCOME BONUS</div>
+            <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 8 }}>500 pts</div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>= $5 off your next purchase</div>
+          </div>
+          <div style={{ marginBottom: 20 }}>
+            {['Earn 1 pt per $1 spent', 'Birthday rewards', 'Exclusive member deals'].map((benefit, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderBottom: i < 2 ? `1px solid ${colors.gray100}` : 'none' }}>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: t.accentLight, color: t.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>✓</div>
+                <span style={{ fontSize: 14, color: colors.gray700 }}>{benefit}</span>
+              </div>
+            ))}
+          </div>
+          <InputField label="Email Address" placeholder="you@email.com" theme={theme} />
+          <CTAButton theme={theme}>Join Now</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Gift Card Balance
+    const GiftCardApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.gift}
+            title="Gift Card"
+            subtitle="Check balance & redeem"
+            theme={theme}
+          />
+          <ValueCard
+            label="Available Balance"
+            value="$75.00"
+            subtitle="Card ending ****8821"
+            theme={theme}
+          />
+          <SectionLabel theme={theme}>Quick Actions</SectionLabel>
+          <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
+            <button style={{
+              flex: 1, padding: '14px 16px', borderRadius: 12,
+              background: t.accentLight, border: 'none',
+              fontSize: 13, fontWeight: 600, color: t.accent, cursor: 'pointer',
+            }}>
+              Add Funds
+            </button>
+            <button style={{
+              flex: 1, padding: '14px 16px', borderRadius: 12,
+              background: colors.gray100, border: 'none',
+              fontSize: 13, fontWeight: 600, color: colors.gray700, cursor: 'pointer',
+            }}>
+              View History
+            </button>
+          </div>
+          <CTAButton theme={theme}>Apply to Order</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
+    // FINANCIAL (Additional)
+    // ============================================
+
+    // Fund Transfer
+    const FundTransferApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.card}
+            title="Transfer Funds"
+            subtitle="Move money securely"
+            theme={theme}
+          />
+          <SectionLabel theme={theme}>From Account</SectionLabel>
+          <SelectField value="Checking ****4521 • $4,230.50" theme={theme} />
+          <SectionLabel theme={theme}>To Account</SectionLabel>
+          <SelectField value="Savings ****8832 • $12,450.00" theme={theme} />
+          <InputField label="Amount" placeholder="$0.00" theme={theme} />
+          <CTAButton theme={theme}>Transfer Now</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
+    // CROSS-INDUSTRY / UNIVERSAL
+    // ============================================
+
+    // PIN Reset
+    const PINResetApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.shield}
+            title="Reset PIN"
+            subtitle="Secure verification"
+            theme={theme}
+          />
+          <div style={{
+            background: t.accentLight,
+            borderRadius: 12,
+            padding: 16,
+            marginBottom: 16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+          }}>
+            <div style={{ fontSize: 24 }}>🔒</div>
+            <div style={{ fontSize: 13, color: colors.gray700, lineHeight: 1.5 }}>
+              For your security, we'll verify your identity before resetting your PIN.
+            </div>
+          </div>
+          <InputField label="Last 4 of SSN" placeholder="••••" theme={theme} />
+          <InputField label="Date of Birth" placeholder="MM / DD / YYYY" theme={theme} />
+          <CTAButton theme={theme}>Verify & Continue</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Billing Statement
+    const BillingStatementApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.receipt}
+            title="Billing Statement"
+            subtitle="December 2024"
+            theme={theme}
+          />
+          <ValueCard
+            label="Current Balance"
+            value="$284.50"
+            subtitle="Due Dec 15"
+            theme={theme}
+          />
+          <div style={{ marginBottom: 16 }}>
+            {[
+              { label: 'Previous balance', amount: '$0.00' },
+              { label: 'New charges', amount: '$284.50' },
+              { label: 'Payments received', amount: '-$0.00' },
+            ].map((item, i) => (
+              <div key={i} style={{
+                display: 'flex', justifyContent: 'space-between',
+                padding: '10px 0', borderBottom: i < 2 ? `1px solid ${colors.gray100}` : 'none',
+              }}>
+                <span style={{ fontSize: 14, color: colors.gray600 }}>{item.label}</span>
+                <span style={{ fontSize: 14, fontWeight: 600, color: colors.gray900 }}>{item.amount}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <SecondaryButton theme={theme}>Download PDF</SecondaryButton>
+            <CTAButton theme={theme}>Pay Now</CTAButton>
+          </div>
+        </MicroAppCard>
+      );
+    };
+
+    // Account Preferences
+    const AccountPrefsApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.user}
+            title="Account Settings"
+            subtitle="Manage preferences"
+            theme={theme}
+          />
+          <SectionLabel theme={theme}>Notifications</SectionLabel>
+          {[
+            { label: 'Email notifications', on: true },
+            { label: 'SMS alerts', on: true },
+            { label: 'Marketing emails', on: false },
+          ].map((pref, i) => (
+            <div key={i} style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              padding: '12px 0', borderBottom: i < 2 ? `1px solid ${colors.gray100}` : 'none',
+            }}>
+              <span style={{ fontSize: 14, color: colors.gray700 }}>{pref.label}</span>
+              <div style={{
+                width: 44, height: 24, borderRadius: 12,
+                background: pref.on ? t.accent : colors.gray300,
+                position: 'relative', cursor: 'pointer',
+              }}>
+                <div style={{
+                  width: 20, height: 20, borderRadius: '50%', background: colors.white,
+                  position: 'absolute', top: 2,
+                  left: pref.on ? 22 : 2,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                }} />
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 16 }}>
+            <CTAButton theme={theme}>Save Preferences</CTAButton>
+          </div>
+        </MicroAppCard>
+      );
+    };
+
+    // Pure E-Signature
+    const ESignatureApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.pen}
+            title="Sign Document"
+            subtitle="1 signature required"
+            theme={theme}
+          />
+          <div style={{
+            background: colors.gray50, borderRadius: 12, padding: 16, marginBottom: 16,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+              <span style={{ fontSize: 20 }}>📄</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: colors.gray900 }}>Service Agreement</div>
+                <div style={{ fontSize: 12, color: colors.gray500 }}>PDF • 3 pages</div>
+              </div>
+            </div>
+            <button style={{
+              width: '100%', padding: '8px 12px', borderRadius: 8,
+              background: colors.white, border: `1px solid ${colors.gray200}`,
+              fontSize: 12, color: t.accent, fontWeight: 600, cursor: 'pointer',
+            }}>
+              View Document
+            </button>
+          </div>
+          <div style={{ background: colors.white, border: `2px solid ${colors.gray200}`, borderRadius: 12, padding: 20, marginBottom: 16, minHeight: 100, position: 'relative' }}>
+            <div style={{ position: 'absolute', bottom: 32, left: 20, right: 20, borderBottom: `2px solid ${colors.gray300}` }} />
+            <div style={{ position: 'absolute', bottom: 28, left: 20, fontSize: 18, color: colors.gray400, fontWeight: 300 }}>✕</div>
+            <svg width="120" height="40" viewBox="0 0 120 40" style={{ position: 'absolute', bottom: 36, left: 40 }}>
+              <path d="M5 30 Q 15 5, 30 25 T 55 20 T 80 25 T 105 15" stroke={t.accent} strokeWidth="2" fill="none" opacity="0.6"/>
+            </svg>
+            <div style={{ position: 'absolute', bottom: 8, right: 16, fontSize: 10, color: colors.gray400 }}>Sign here</div>
+          </div>
+          <CTAButton theme={theme}>Sign & Submit</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Compliance / Terms Acceptance
+    const ComplianceApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.shield}
+            title="Terms & Conditions"
+            subtitle="Annual acknowledgment"
+            theme={theme}
+          />
+          <div style={{
+            background: colors.gray50, borderRadius: 12, padding: 16, marginBottom: 16,
+            maxHeight: 120, overflow: 'hidden', position: 'relative',
+          }}>
+            <div style={{ fontSize: 12, color: colors.gray600, lineHeight: 1.7 }}>
+              By continuing, you acknowledge that you have read, understood, and agree to be bound by our updated Terms of Service and Privacy Policy. These terms govern your use of our services and outline your rights and responsibilities...
+            </div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 40, background: 'linear-gradient(transparent, #F9FAFB)' }} />
+          </div>
+          <div style={{ marginBottom: 16 }}>
+            {[
+              { label: 'Terms of Service', checked: true },
+              { label: 'Privacy Policy', checked: true },
+              { label: 'Electronic Communications', checked: false },
+            ].map((item, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0' }}>
+                <input type="checkbox" defaultChecked={item.checked} style={{ accentColor: t.accent, width: 18, height: 18 }} />
+                <span style={{ fontSize: 14, color: colors.gray700 }}>{item.label}</span>
+              </div>
+            ))}
+          </div>
+          <CTAButton theme={theme}>I Accept</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Contact Update
+    const ContactUpdateApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.user}
+            title="Update Contact Info"
+            subtitle="Keep your details current"
+            theme={theme}
+          />
+          <SectionLabel theme={theme}>Contact Information</SectionLabel>
+          <InputField label="Email Address" placeholder="john@email.com" theme={theme} />
+          <InputField label="Phone Number" placeholder="(555) 123-4567" theme={theme} />
+          <InputField label="Mailing Address" placeholder="123 Main St, City, ST 12345" theme={theme} />
+          <CTAButton theme={theme}>Save Changes</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // Feedback / Survey
+    const FeedbackApp = ({ theme = 'purple' }) => {
+      const t = themes[theme];
+      return (
+        <MicroAppCard>
+          <MicroAppHeader
+            icon={Icons.form}
+            title="Share Feedback"
+            subtitle="Help us improve"
+            theme={theme}
+          />
+          <SectionLabel theme={theme}>How was your experience?</SectionLabel>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 20, padding: '8px 0' }}>
+            {['😞', '😐', '🙂', '😊', '🤩'].map((emoji, i) => (
+              <button key={i} style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: i === 3 ? t.accentLight : colors.gray50,
+                border: i === 3 ? `2px solid ${t.accent}` : `1px solid ${colors.gray200}`,
+                fontSize: 24, cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                {emoji}
+              </button>
+            ))}
+          </div>
+          <InputField label="Comments (optional)" placeholder="Tell us more..." theme={theme} />
+          <CTAButton theme={theme}>Submit Feedback</CTAButton>
+        </MicroAppCard>
+      );
+    };
+
+    // ============================================
     // THEME PICKER
     // ============================================
     const ThemePicker = ({ currentTheme, onSelect }) => (
@@ -1226,18 +2378,68 @@
       const appRef = useRef(null);
 
       const apps = [
-        { id: 'payment', label: 'Payment' },
-        { id: 'identity', label: 'ID Verify' },
-        { id: 'form', label: 'Form Intake' },
-        { id: 'dispute', label: 'Dispute' },
-        { id: 'photo', label: 'Photo Upload' },
-        { id: 'signature', label: 'Signature' },
-        { id: 'service', label: 'Service Select' },
-        { id: 'program', label: 'Enrollment' },
-        { id: 'booking', label: 'Booking' },
-        { id: 'arrangement', label: 'Pay Plan' },
-        { id: 'newaccount', label: 'New Account' },
+        // Core Patterns
+        { id: 'payment', label: 'Payment', category: 'Core' },
+        { id: 'identity', label: 'ID Verify', category: 'Core' },
+        { id: 'form', label: 'Form Intake', category: 'Core' },
+        { id: 'dispute', label: 'Dispute', category: 'Core' },
+        { id: 'photo', label: 'Photo Upload', category: 'Core' },
+        { id: 'signature', label: 'Signature', category: 'Core' },
+        { id: 'service', label: 'Service Select', category: 'Core' },
+        { id: 'program', label: 'Enrollment', category: 'Core' },
+        { id: 'booking', label: 'Booking', category: 'Core' },
+        { id: 'arrangement', label: 'Pay Plan', category: 'Core' },
+        // Financial Services
+        { id: 'newaccount', label: 'New Account', category: 'Financial' },
+        { id: 'kyc', label: 'KYC Refresh', category: 'Financial' },
+        { id: 'collections', label: 'Collections', category: 'Financial' },
+        { id: 'fundtransfer', label: 'Fund Transfer', category: 'Financial' },
+        // Insurance
+        { id: 'fnol', label: 'FNOL Claim', category: 'Insurance' },
+        { id: 'premium', label: 'Premium Payment', category: 'Insurance' },
+        { id: 'policyapp', label: 'Policy App', category: 'Insurance' },
+        { id: 'insuranceconsent', label: 'Policy Consent', category: 'Insurance' },
+        // Healthcare
+        { id: 'patientintake', label: 'Patient Intake', category: 'Healthcare' },
+        { id: 'copay', label: 'Co-Pay', category: 'Healthcare' },
+        { id: 'insurancecard', label: 'Insurance Card', category: 'Healthcare' },
+        { id: 'treatmentconsent', label: 'Treatment Consent', category: 'Healthcare' },
+        // Telecom
+        { id: 'deviceupgrade', label: 'Device Upgrade', category: 'Telecom' },
+        { id: 'autopay', label: 'Auto-Pay', category: 'Telecom' },
+        { id: 'accountupdate', label: 'Account Update', category: 'Telecom' },
+        { id: 'newline', label: 'New Line', category: 'Telecom' },
+        // Utilities
+        { id: 'servicetransfer', label: 'Service Transfer', category: 'Utilities' },
+        { id: 'meterreading', label: 'Meter Reading', category: 'Utilities' },
+        { id: 'budgetbilling', label: 'Budget Billing', category: 'Utilities' },
+        { id: 'utilitypayment', label: 'Utility Payment', category: 'Utilities' },
+        // Travel
+        { id: 'bookingmod', label: 'Modify Booking', category: 'Travel' },
+        { id: 'travelpayment', label: 'Travel Payment', category: 'Travel' },
+        { id: 'loyaltyredeem', label: 'Redeem Miles', category: 'Travel' },
+        { id: 'checkin', label: 'Check-In', category: 'Travel' },
+        // Retail / E-commerce
+        { id: 'orderreturn', label: 'Order Return', category: 'Retail' },
+        { id: 'ordertracking', label: 'Order Tracking', category: 'Retail' },
+        { id: 'retailloyalty', label: 'Join Rewards', category: 'Retail' },
+        { id: 'giftcard', label: 'Gift Card', category: 'Retail' },
+        // Cross-Industry / Universal
+        { id: 'pinreset', label: 'PIN Reset', category: 'Universal' },
+        { id: 'billing', label: 'Billing Statement', category: 'Universal' },
+        { id: 'accountprefs', label: 'Account Settings', category: 'Universal' },
+        { id: 'esignature', label: 'E-Signature', category: 'Universal' },
+        { id: 'compliance', label: 'Terms & Compliance', category: 'Universal' },
+        { id: 'contactupdate', label: 'Contact Update', category: 'Universal' },
+        { id: 'feedback', label: 'Feedback', category: 'Universal' },
       ];
+
+      const categories = ['Core', 'Financial', 'Insurance', 'Healthcare', 'Telecom', 'Utilities', 'Travel', 'Retail', 'Universal'];
+      const [activeCategory, setActiveCategory] = useState('all');
+
+      const filteredApps = activeCategory === 'all' 
+        ? apps 
+        : apps.filter(app => app.category === activeCategory);
 
       const [selectedForExport, setSelectedForExport] = useState({});
       const galleryRefs = useRef({});
@@ -1251,7 +2453,7 @@
 
       const selectAll = () => {
         const allSelected = {};
-        apps.forEach(app => { allSelected[app.id] = true; });
+        filteredApps.forEach(app => { allSelected[app.id] = true; });
         setSelectedForExport(allSelected);
       };
 
@@ -1315,25 +2517,9 @@
         setExporting(false);
       };
 
-      const renderApp = () => {
-        switch(activeApp) {
-          case 'payment': return <MakePaymentApp theme={currentTheme} />;
-          case 'identity': return <IDVerificationApp theme={currentTheme} />;
-          case 'form': return <FormIntakeApp theme={currentTheme} />;
-          case 'dispute': return <DisputeClaimApp theme={currentTheme} />;
-          case 'photo': return <PhotoCaptureApp theme={currentTheme} />;
-          case 'signature': return <SignatureApp theme={currentTheme} />;
-          case 'service': return <ServiceSelectionApp theme={currentTheme} />;
-          case 'program': return <ProgramEnrollmentApp theme={currentTheme} />;
-          case 'booking': return <BookingItineraryApp theme={currentTheme} />;
-          case 'arrangement': return <PaymentArrangementApp theme={currentTheme} />;
-          case 'newaccount': return <OpenAccountApp theme={currentTheme} />;
-          default: return <MakePaymentApp theme={currentTheme} />;
-        }
-      };
-
       const renderAppById = (id) => {
         switch(id) {
+          // Core patterns
           case 'payment': return <MakePaymentApp theme={currentTheme} />;
           case 'identity': return <IDVerificationApp theme={currentTheme} />;
           case 'form': return <FormIntakeApp theme={currentTheme} />;
@@ -1344,10 +2530,54 @@
           case 'program': return <ProgramEnrollmentApp theme={currentTheme} />;
           case 'booking': return <BookingItineraryApp theme={currentTheme} />;
           case 'arrangement': return <PaymentArrangementApp theme={currentTheme} />;
+          // Financial
           case 'newaccount': return <OpenAccountApp theme={currentTheme} />;
+          case 'kyc': return <KYCRefreshApp theme={currentTheme} />;
+          case 'collections': return <CollectionsPaymentApp theme={currentTheme} />;
+          case 'fundtransfer': return <FundTransferApp theme={currentTheme} />;
+          // Insurance
+          case 'fnol': return <FNOLApp theme={currentTheme} />;
+          case 'premium': return <PremiumPaymentApp theme={currentTheme} />;
+          case 'policyapp': return <PolicyApplicationApp theme={currentTheme} />;
+          case 'insuranceconsent': return <InsuranceConsentApp theme={currentTheme} />;
+          // Healthcare
+          case 'patientintake': return <PatientIntakeApp theme={currentTheme} />;
+          case 'copay': return <CoPayApp theme={currentTheme} />;
+          case 'insurancecard': return <InsuranceCardApp theme={currentTheme} />;
+          case 'treatmentconsent': return <TreatmentConsentApp theme={currentTheme} />;
+          // Telecom
+          case 'deviceupgrade': return <DeviceUpgradeApp theme={currentTheme} />;
+          case 'autopay': return <AutoPayApp theme={currentTheme} />;
+          case 'accountupdate': return <AccountUpdateApp theme={currentTheme} />;
+          case 'newline': return <NewLineApp theme={currentTheme} />;
+          // Utilities
+          case 'servicetransfer': return <ServiceTransferApp theme={currentTheme} />;
+          case 'meterreading': return <MeterReadingApp theme={currentTheme} />;
+          case 'budgetbilling': return <BudgetBillingApp theme={currentTheme} />;
+          case 'utilitypayment': return <UtilityPaymentApp theme={currentTheme} />;
+          // Travel
+          case 'bookingmod': return <BookingModApp theme={currentTheme} />;
+          case 'travelpayment': return <TravelPaymentApp theme={currentTheme} />;
+          case 'loyaltyredeem': return <LoyaltyRedemptionApp theme={currentTheme} />;
+          case 'checkin': return <CheckInApp theme={currentTheme} />;
+          // Retail
+          case 'orderreturn': return <OrderReturnApp theme={currentTheme} />;
+          case 'ordertracking': return <OrderTrackingApp theme={currentTheme} />;
+          case 'retailloyalty': return <RetailLoyaltyApp theme={currentTheme} />;
+          case 'giftcard': return <GiftCardApp theme={currentTheme} />;
+          // Universal / Cross-Industry
+          case 'pinreset': return <PINResetApp theme={currentTheme} />;
+          case 'billing': return <BillingStatementApp theme={currentTheme} />;
+          case 'accountprefs': return <AccountPrefsApp theme={currentTheme} />;
+          case 'esignature': return <ESignatureApp theme={currentTheme} />;
+          case 'compliance': return <ComplianceApp theme={currentTheme} />;
+          case 'contactupdate': return <ContactUpdateApp theme={currentTheme} />;
+          case 'feedback': return <FeedbackApp theme={currentTheme} />;
           default: return null;
         }
       };
+
+      const renderApp = () => renderAppById(activeApp);
 
       const isGalleryView = activeApp === 'gallery';
 
@@ -1363,71 +2593,96 @@
             background: colors.white,
             borderBottom: `1px solid ${colors.gray200}`,
             padding: '12px 24px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
             zIndex: 100,
-            gap: 16,
           }}>
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', flex: 1, alignItems: 'center' }}>
-              {/* Gallery tab first */}
-              <button
-                onClick={() => setActiveApp('gallery')}
-                style={{
-                  padding: '6px 14px',
-                  borderRadius: 16,
-                  border: isGalleryView ? 'none' : `2px solid ${themes[currentTheme].accent}`,
-                  background: isGalleryView ? themes[currentTheme].accent : colors.white,
-                  color: isGalleryView ? colors.white : themes[currentTheme].accent,
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                📁 Gallery
-              </button>
-              <div style={{ width: 1, height: 20, background: colors.gray200, margin: '0 6px' }} />
-              {apps.map(app => (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginBottom: isGalleryView ? 12 : 0 }}>
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                {/* Gallery tab first */}
                 <button
-                  key={app.id}
-                  onClick={() => setActiveApp(app.id)}
+                  onClick={() => setActiveApp('gallery')}
                   style={{
-                    padding: '6px 12px',
+                    padding: '6px 14px',
                     borderRadius: 16,
-                    border: 'none',
-                    background: activeApp === app.id ? themes[currentTheme].accent : colors.gray100,
-                    color: activeApp === app.id ? colors.white : colors.gray600,
+                    border: isGalleryView ? 'none' : `2px solid ${themes[currentTheme].accent}`,
+                    background: isGalleryView ? themes[currentTheme].accent : colors.white,
+                    color: isGalleryView ? colors.white : themes[currentTheme].accent,
                     fontSize: 12,
-                    fontWeight: 600,
+                    fontWeight: 700,
                     cursor: 'pointer',
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {app.label}
+                  📁 Gallery
                 </button>
-              ))}
+                <div style={{ width: 1, height: 20, background: colors.gray200, margin: '0 6px' }} />
+                {/* Category filter for non-gallery view */}
+                {!isGalleryView && (
+                  <select
+                    value={activeCategory}
+                    onChange={(e) => setActiveCategory(e.target.value)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: 16,
+                      border: `1px solid ${colors.gray300}`,
+                      background: colors.white,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: colors.gray700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <option value="all">All Industries</option>
+                    {categories.map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              {!isGalleryView && (
+                <button
+                  onClick={exportToPNG}
+                  disabled={exporting}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: 20,
+                    border: 'none',
+                    background: exporting ? colors.gray200 : themes[currentTheme].accent,
+                    color: exporting ? colors.gray500 : colors.white,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    cursor: exporting ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                  }}
+                >
+                  {exporting ? 'Exporting...' : '↓ Download PNG'}
+                </button>
+              )}
             </div>
+            {/* App tabs - show when not in gallery */}
             {!isGalleryView && (
-              <button
-                onClick={exportToPNG}
-                disabled={exporting}
-                style={{
-                  padding: '8px 16px',
-                  borderRadius: 20,
-                  border: 'none',
-                  background: exporting ? colors.gray200 : themes[currentTheme].accent,
-                  color: exporting ? colors.gray500 : colors.white,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  cursor: exporting ? 'not-allowed' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                {exporting ? 'Exporting...' : '↓ Download PNG'}
-              </button>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                {filteredApps.map(app => (
+                  <button
+                    key={app.id}
+                    onClick={() => setActiveApp(app.id)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: 16,
+                      border: 'none',
+                      background: activeApp === app.id ? themes[currentTheme].accent : colors.gray100,
+                      color: activeApp === app.id ? colors.white : colors.gray600,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {app.label}
+                  </button>
+                ))}
+              </div>
             )}
           </div>
 
@@ -1438,13 +2693,64 @@
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: 'flex-start',
                 marginBottom: 32,
                 flexWrap: 'wrap',
                 gap: 16,
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 24, flexWrap: 'wrap' }}>
                   <ThemePicker currentTheme={currentTheme} onSelect={setCurrentTheme} />
+                  {/* Category Filter */}
+                  <div>
+                    <div style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: colors.gray500,
+                      textTransform: 'uppercase',
+                      letterSpacing: 1.2,
+                      marginBottom: 12,
+                    }}>
+                      Industry
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                      <button
+                        onClick={() => setActiveCategory('all')}
+                        style={{
+                          padding: '6px 12px',
+                          borderRadius: 16,
+                          border: 'none',
+                          background: activeCategory === 'all' ? themes[currentTheme].accent : colors.gray100,
+                          color: activeCategory === 'all' ? colors.white : colors.gray600,
+                          fontSize: 11,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                        }}
+                      >
+                        All ({apps.length})
+                      </button>
+                      {categories.map(cat => {
+                        const count = apps.filter(a => a.category === cat).length;
+                        return (
+                          <button
+                            key={cat}
+                            onClick={() => setActiveCategory(cat)}
+                            style={{
+                              padding: '6px 12px',
+                              borderRadius: 16,
+                              border: 'none',
+                              background: activeCategory === cat ? themes[currentTheme].accent : colors.gray100,
+                              color: activeCategory === cat ? colors.white : colors.gray600,
+                              fontSize: 11,
+                              fontWeight: 600,
+                              cursor: 'pointer',
+                            }}
+                          >
+                            {cat} ({count})
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <button
@@ -1505,7 +2811,7 @@
                 gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
                 gap: 32,
               }}>
-                {apps.map(app => (
+                {filteredApps.map(app => (
                   <div key={app.id} style={{ position: 'relative' }}>
                     {/* Checkbox */}
                     <label style={{
@@ -1535,6 +2841,9 @@
                       />
                       <span style={{ fontSize: 12, fontWeight: 600, color: colors.gray700 }}>
                         {app.label}
+                      </span>
+                      <span style={{ fontSize: 10, color: colors.gray400, marginLeft: 4 }}>
+                        {app.category}
                       </span>
                     </label>
                     {/* App Card */}
